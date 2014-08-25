@@ -3,7 +3,7 @@
 	* Implement an ordened list.
 	*/
 	include(Nodo);
-	class List extends AnotherClass
+	class List extends AnotherClass implements Iterator 
 	{
 		
 		private $head; // The begining of the list; Nodo type.
@@ -13,6 +13,27 @@
 		{
 			# code...
 		}
+
+		function rewind() {
+
+		}
+
+		function current() {
+
+		}
+
+		function key() {
+
+		}
+
+		function next() {
+
+		}
+
+		function valid() {
+			
+		}
+
 
 		function insert($value) {
 			$newNodo = new Nodo($value);
@@ -41,11 +62,41 @@
 			}
 		}
 
-		function remove() {
+		function remove($value) {
+			$nodo = search($value);
 
+			if ($nodo == false) {
+				return false;
+			}
+
+			if ($nodo == $this->head) {
+				$this->head = $nodo->getNext;
+				return;
+			} elseif ($nodo == $this->tail) {
+				$this->tail = $nodo->getPrevious;
+				$this->tail->setNext(null);
+				return;
+			} else {
+				$nodo->getPrevious->setNext($nodo->getNext);
+				$nodo->getNext->setPrevious($nodo->getPrevious);
+			}
 		}
 
-		function search() {
+		function search($value) {
+			$iter = $this->head;
+
+			while (!is_null($iter)) {
+				if ($iter->getValue == $value) {
+					return $iter;
+				}
+
+				if ($iter->value > $value) {
+					return false;
+				}
+
+				$iter = $iter->getNext();
+			}
+
 
 		}
 
