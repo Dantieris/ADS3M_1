@@ -3,35 +3,45 @@
 	* Implement an ordened list.
 	*/
 	include(Nodo);
-	class List extends AnotherClass implements Iterator 
+	class List implements Iterator 
 	{
 		
 		private $head; // The begining of the list; Nodo type.
 		private $tail; // The ending of the list; Nodo type.
+		private $iter;
+		private $position;
 
 		function __construct(argument)
 		{
-			# code...
+			$this->head = null;
+			$this->tail = null;
+			$this->position = 0;
 		}
 
 		function rewind() {
-
+			$this->position = 0;
+			$this->iter = $this->head;
 		}
 
 		function current() {
-
+			return $this->iter;
 		}
 
 		function key() {
-
+			return $this->position;
 		}
 
 		function next() {
-
+			$this->iter = $this->iter->getNext;
 		}
 
 		function valid() {
-			
+			if (isset($this->iter)) {
+				return true;
+			} else {
+				return false;
+			}
+						
 		}
 
 
