@@ -3,14 +3,17 @@ package com.senac.gui.bordermix;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Formulario extends JFrame {
+public class Formulario extends JFrame implements ActionListener {
 	
 	public static void main(String[] args) {
 		new Formulario();
@@ -51,6 +54,9 @@ public class Formulario extends JFrame {
 		bt_ok 		= new JButton("OK");		
 		bt_limpar 	= new JButton("Limpar");
 		
+		bt_ok.addActionListener(this);
+		bt_limpar.addActionListener(this);
+		
 		JPanel pn_botoes 	= new JPanel();
 		
 		pn_botoes.add(bt_ok);
@@ -59,6 +65,15 @@ public class Formulario extends JFrame {
 		// Adicionandos os paineis ao frame.
 		this.getContentPane().add(pn_north);
 		this.getContentPane().add(pn_botoes, BorderLayout.SOUTH);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource().equals(bt_ok)) {
+			JOptionPane.showMessageDialog(this, "Botão OK");
+		} else if (e.getSource().equals(bt_limpar)){
+			JOptionPane.showMessageDialog(this, "Botão limpar");
+		}
 	}
 	
 }
