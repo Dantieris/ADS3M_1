@@ -1,4 +1,4 @@
-<?php
+ <?php
 	/**
 	* Implement a nodo of an ordened list.
 	*/

@@ -2,7 +2,8 @@
 	/**
 	* Implement an ordened list.
 	*/
-	include(Nodo);
+	include_once(Nodo.class.php);
+	
 	class List implements Iterator 
 	{
 		
@@ -41,7 +42,6 @@
 			} else {
 				return false;
 			}
-						
 		}
 
 
