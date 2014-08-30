@@ -21,7 +21,7 @@ public class FormularioCalculadora extends JFrame {
 	private JButton bt_1, bt_2, bt_3, bt_4, bt_5, bt_6, bt_7, 
 					bt_8, bt_9, bt_0, bt_soma, bt_subtracao, 
 					bt_divisao, bt_multiplicacao, bt_igual,
-					bt_ponto;
+					bt_vazio;
 	
 	public static void main(String[] args) {
 		new FormularioCalculadora();
@@ -32,7 +32,7 @@ public class FormularioCalculadora extends JFrame {
 		
 		iniciarComponentes();
 		
-		this.setSize(250, 250);
+		this.setSize(250, 200);
 		this.setLocation(200,300);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,10 +69,10 @@ public class FormularioCalculadora extends JFrame {
 		bt_divisao			= new JButton("/");
 		bt_multiplicacao	= new JButton("*");
 		bt_igual			= new JButton("=");
-		bt_ponto			= new JButton(".");
+		bt_vazio			= new JButton("");
 		
 		
-		JPanel pn_botoes 	= new JPanel(new GridLayout(4,4, 5, 5));
+		JPanel pn_botoes 	= new JPanel(new GridLayout(4,4, 8, 8));
 
 		pn_botoes.add(bt_7);
 		pn_botoes.add(bt_8);
@@ -89,8 +89,8 @@ public class FormularioCalculadora extends JFrame {
 		pn_botoes.add(bt_3);
 		pn_botoes.add(bt_subtracao);
 		
+		pn_botoes.add(bt_vazio);
 		pn_botoes.add(bt_0);
-		pn_botoes.add(bt_ponto);
 		pn_botoes.add(bt_igual);
 		pn_botoes.add(bt_soma);
 		
