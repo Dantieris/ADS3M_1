@@ -54,13 +54,15 @@ public class Formulario extends JFrame implements ActionListener {
 		bt_ok 		= new JButton("OK");		
 		bt_limpar 	= new JButton("Limpar");
 		
-		bt_ok.addActionListener(this);
-		bt_limpar.addActionListener(this);
-		
 		JPanel pn_botoes 	= new JPanel();
 		
 		pn_botoes.add(bt_ok);
 		pn_botoes.add(bt_limpar);
+		
+		// Adicionando leitores de eventos nos botoes.
+		
+		bt_ok.addActionListener(this);
+		bt_limpar.addActionListener(this);
 		
 		// Adicionandos os paineis ao frame.
 		this.getContentPane().add(pn_north);
