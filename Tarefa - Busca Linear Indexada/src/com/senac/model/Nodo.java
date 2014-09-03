@@ -1,4 +1,4 @@
-package com.senac.lib;
+package com.senac.model;
 
 /**
  * Representa um nodo de uma lista duplamente encadeada. 

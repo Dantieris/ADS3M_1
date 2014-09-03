@@ -1,4 +1,4 @@
-package com.senac.lib.exceptions;
+package com.senac.exceptions;
 
 /**
  * Esta classe representa a excecão de quando uma lista esteja vazia.
@@ -14,6 +14,6 @@ public class ListaVaziaException extends Exception {
 	 * Inicializa um objeto ListaVaziaException recém-criado.
 	 */
 	public ListaVaziaException() {
-		super();
+		super("Operação em Lista Vazia");
 	}
 }

@@ -30,11 +30,31 @@ public class Console {
 
 	public static void exibirInserir() {
 		System.out.println("\n"
-				+ "Digite o valor a ser inserido: ");
+				+ "** Opção Inserir ** ");
 	}
 
 	public static void exibirRemover() {
 		System.out.println("\n"
-				+ "Digite o valor a ser removido: ");
+				+ "** Opção Remover **");
+	}
+
+	public static void exibirProcura() {
+		System.out.println("\n"
+				+ "** Opção Procurar **");
+	}
+
+	public static void exibirOpcaoInvalida() {
+		System.out.println("\n"
+				+ "** Opção inválida **");
+	}
+
+	public static String receberValor() {
+		System.out.println("\n"
+				+ "Digite o valor: ");
+		return scanner().nextLine();
+	}
+
+	public static void exibirErro(String mensagem) {
+		System.err.println(mensagem);
 	}
 }

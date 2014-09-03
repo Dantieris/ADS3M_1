@@ -1,9 +1,9 @@
-package com.senac.lib;
+package com.senac.model;
 
 import java.util.Iterator;
 
-import com.senac.lib.exceptions.ItemNaoEncontradoException;
-import com.senac.lib.exceptions.ListaVaziaException;
+import com.senac.exceptions.ItemNaoEncontradoException;
+import com.senac.exceptions.ListaVaziaException;
 
 /**
  *Esta classe representa a estrutura de dados lista duplamente encadeada ordenada, utilizando tipos genéricos.
@@ -123,12 +123,14 @@ public class ListaOrdenada<T extends Comparable<T>>
 		while ( iter != null ) {
 			int cmp = valor.compareTo(iter.getValor());
 			
-			if (cmp == 0)
+			if (cmp == 0) {
 				return iter;
+			}
 			
-			if (cmp < 0)
+			if (cmp < 0) {
 				throw new ItemNaoEncontradoException();
-
+			}
+			
 			iter = iter.getProximo();
 		}
 		throw new ItemNaoEncontradoException();

@@ -1,4 +1,4 @@
-package com.senac.lib.exceptions;
+package com.senac.exceptions;
 
 /**
  * Esta classe representa a excecão de quando um item não seja encontrado.
@@ -14,6 +14,6 @@ public class ItemNaoEncontradoException extends Exception {
 	 * Inicializa um objeto ItemNotFoundException recém-criado.
 	 */
 	public ItemNaoEncontradoException() {
-		super();
+		super("Item Não Encontrado");
 	}
 }

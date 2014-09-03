@@ -1,4 +1,4 @@
-package com.senac.lib;
+package com.senac.model;
 
 public class NodoIndice<T> {
 
