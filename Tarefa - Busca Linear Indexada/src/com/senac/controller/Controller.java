@@ -5,10 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
+import com.senac.estruturas.ListaOrdenada;
 import com.senac.exceptions.ItemNaoEncontradoException;
 import com.senac.exceptions.ListaVaziaException;
 import com.senac.model.ListaIndices;
-import com.senac.model.ListaOrdenada;
 import com.senac.view.Console;
 
 public class Controller implements Runnable {

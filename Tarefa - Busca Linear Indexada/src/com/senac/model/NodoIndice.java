@@ -1,5 +1,7 @@
 package com.senac.model;
 
+import com.senac.estruturas.Nodo;
+
 public class NodoIndice<T> {
 
 	private NodoIndice<T> proximo;

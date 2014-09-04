@@ -1,5 +1,7 @@
 package com.senac.model;
 
+import com.senac.estruturas.ListaOrdenada;
+import com.senac.estruturas.Nodo;
 import com.senac.exceptions.ItemNaoEncontradoException;
 import com.senac.exceptions.ListaVaziaException;
 
@@ -38,7 +40,16 @@ public class ListaIndices<T extends Comparable<T>> {
 	public void inserir(T valor) {
 		lista.inserir(valor);
 		contIndice++;
-		criarIndices();
+		
+		if (head == null) {
+			head.setAlvo(lista.getHead());
+			tail.setAlvo(lista.getTail());
+		}
+
+		if (contIndice >= 10) {
+			inserirIndice(valor);
+		}
+		
 	}
 	
 	public void remover(T valor) throws ListaVaziaException, ItemNaoEncontradoException {
@@ -58,7 +69,7 @@ public class ListaIndices<T extends Comparable<T>> {
 			if (cmpIndices < 0) {
 				break;
 			}
-			
+			System.out.println(iterIndices);
 			iterIndices = iterIndices.getProximo();
 		}
 		
@@ -77,61 +88,8 @@ public class ListaIndices<T extends Comparable<T>> {
 		return null;
 	}
 	
-	private void criarIndices() {
-		this.head.setAlvo(lista.getHead());
-		this.tail.setAlvo(lista.getTail());
-		NodoIndice<T> iter1 = this.head;
+	public void inserirIndice( T valor) {
 		
-		System.out.println(iter1.getAlvo().getValor());			
-		
-		if (contIndice >= 10) {
-			NodoIndice<T> novo = new NodoIndice<T>();
-			Nodo<T> iter = lista.getHead();
-			for (int i = 0 ; i < 10 ; i++) {
-				iter = iter.getProximo();
-			}
-			contIndice = 0;
-			inserir(novo);
-		}
-	}
-	
-	public void inserir(NodoIndice<T> novo) {
-		NodoIndice<T> nodo = procuraProximo(novo.getAlvo().getValor());
-		
-		if ( nodo != null ) {
-			novo.setAnterior(nodo.getAnterior());
-			novo.setProximo(nodo);
-			
-			if ( nodo.getAnterior() != null ) {
-				nodo.getAnterior().setProximo(novo);
-			}
-			else {
-				this.head = novo;
-			}
-			
-			novo.getProximo().setAnterior(novo);
-		}
-		else {
-			novo.setProximo(null);
-			novo.setAnterior(this.tail);
-
-			tail.setProximo(novo);
-			tail = novo;
-		}
-		
-	}
-	
-	private NodoIndice<T> procuraProximo(T valor) {
-		NodoIndice<T> iter = this.head;
-		while (iter != null) {
-			int cmp = valor.compareTo(iter.getAlvo().getValor());
-			
-			if (cmp < 0)
-				return iter;
-			
-			iter = iter.getProximo();
-			}
-			return null;
 	}
 	
 	
