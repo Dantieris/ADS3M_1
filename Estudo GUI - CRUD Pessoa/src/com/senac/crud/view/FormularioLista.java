@@ -110,15 +110,18 @@ public class FormularioLista extends JFrame {
 		this.add(bt_editar, c);
 		
 		// Adicionando evento aos botões
-		bt_novo.addActionListener(null);
+		bt_novo.addActionListener(new LeitorEventos());
 	}
 	
-	class Eventos implements ActionListener {
+	class LeitorEventos implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			FormularioPessoa form = new FormularioPessoa(new Pessoa());
 			
+			modelList.addElement(form.getPessoa());
 		}
-	}
 		
+	}
+	
 }

@@ -2,22 +2,31 @@ package com.senac.crud.view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import com.senac.crud.model.Pessoa;
 
 public class FormularioPessoa extends JFrame {
 	
 	private JTextField tf_nome, tf_idade;
 	private JButton bt_ok, bt_cancelar;
+	private Pessoa pessoa;
 	
-	public FormularioPessoa() {
-		super("Formulário Pessoa");		
+	public FormularioPessoa(Pessoa pessoa) {
+		super("Formulário Pessoa");
+		
+		this.pessoa = pessoa;
+		
 		this.setLocation(400,200);
 		this.setSize(280,200);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setLayout(new GridBagLayout());
 		
 		iniciarComponentes();
@@ -33,9 +42,7 @@ public class FormularioPessoa extends JFrame {
 		
 		c.weightx = 50;
 		c.weighty = 50;
-		
-		
-		
+
 		c.anchor = GridBagConstraints.WEST;
 		
 	    c.gridheight = 1;
@@ -101,5 +108,23 @@ public class FormularioPessoa extends JFrame {
 	    
 	    this.add(bt_cancelar, c);
 	    
+	}
+	
+	public Pessoa getPessoa() {
+		return this.pessoa;
+	}
+	
+	class LeitorEventos implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			pessoa.setNome(tf_nome.getText());
+			pessoa.setIdade(Integer.parseInt(tf_idade.getText()));
+			
+			JOptionPane.showMessageDialog(FormularioPessoa.this, "Cadastro realizado com sucesso...");
+			
+			dispose();
+		}
+		
 	}
 }
