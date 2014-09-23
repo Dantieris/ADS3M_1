@@ -29,7 +29,7 @@ public class Pessoa {
 	public String toString() {
 		return "Nome: " +
 				nome +
-				"Idade: " + 
+				" - Idade: " + 
 				idade;
 	}
 }

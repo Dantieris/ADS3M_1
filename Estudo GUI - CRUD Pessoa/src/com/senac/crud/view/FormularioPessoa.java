@@ -13,28 +13,42 @@ import javax.swing.JTextField;
 
 import com.senac.crud.model.Pessoa;
 
+
 public class FormularioPessoa extends JFrame {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9146403213983006501L;
 	
 	private JTextField tf_nome, tf_idade;
 	private JButton bt_ok, bt_cancelar;
+	private FormularioLista formularioLista;
 	private Pessoa pessoa;
 	
-	public FormularioPessoa(Pessoa pessoa) {
+	public FormularioPessoa(FormularioLista formularioLista, Pessoa pessoa) {
 		super("Formulário Pessoa");
 		
+		this.formularioLista = formularioLista;
 		this.pessoa = pessoa;
 		
-		this.setLocation(400,200);
+		this.setLocation(600,300);
 		this.setSize(280,200);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setLayout(new GridBagLayout());
 		
 		iniciarComponentes();
 		
+		if (pessoa.getIdade() > 0) {
+			tf_nome.setText(pessoa.getNome());
+			tf_idade.setText(String.valueOf(pessoa.getIdade()));
+		}
+		
 		this.setVisible(true);
 	}
 
 	private void iniciarComponentes() {
+		// Adicionando os elementos ao painel de conteudo
 		GridBagConstraints c = new GridBagConstraints();
 		
 		// Adicionando o label nome ao painel.
@@ -108,22 +122,45 @@ public class FormularioPessoa extends JFrame {
 	    
 	    this.add(bt_cancelar, c);
 	    
-	}
-	
-	public Pessoa getPessoa() {
-		return this.pessoa;
-	}
+	    // Adicionando evento aos botões
+	    bt_ok.addActionListener(new LeitorEventos());
+	    bt_cancelar.addActionListener(new LeitorEventos());
+	}	
 	
 	class LeitorEventos implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			pessoa.setNome(tf_nome.getText());
-			pessoa.setIdade(Integer.parseInt(tf_idade.getText()));
-			
-			JOptionPane.showMessageDialog(FormularioPessoa.this, "Cadastro realizado com sucesso...");
-			
-			dispose();
+			if (e.getSource().equals(bt_ok)) {
+				
+				if (pessoa.getIdade() == 0) {
+					String nome = tf_nome.getText();
+					int idade = Integer.parseInt(tf_idade.getText());
+					
+					pessoa.setNome(nome);
+					pessoa.setIdade(idade);
+					
+					formularioLista.getModelList().addElement(pessoa);
+					
+					JOptionPane.showMessageDialog(FormularioPessoa.this, "Cadastro realizado com sucesso...");
+				} 
+				else {					
+					String nome = tf_nome.getText();
+					int idade = Integer.parseInt(tf_idade.getText());
+					
+					pessoa.setNome(nome);
+					pessoa.setIdade(idade);
+					
+					formularioLista.refresh();
+					
+					JOptionPane.showMessageDialog(FormularioPessoa.this, "Cadastro editado com sucesso...");
+				}
+
+				dispose();
+			}
+			else {
+				dispose();
+			}
 		}
 		
 	}
