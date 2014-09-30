@@ -1,7 +1,5 @@
 package com.senac.desenho.app;
 
-import java.awt.GridBagLayout;
-
 import javax.swing.JFrame;
 
 import com.senac.desenho.TelaDesenho;
