@@ -22,6 +22,11 @@ import com.senac.crud.model.Pessoa;
 
 public class FormularioLista extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6027948056122022992L;
+	
 	private DefaultListModel<Pessoa> modelList;
 	private JList<Pessoa> lt_lista;
 	private JButton bt_novo, bt_editar, bt_remover;

@@ -1,0 +1,10 @@
+casaco
+casa
+jogo
+loja
+cama
+tecla
+gelo
+laje
+cabra
+rato

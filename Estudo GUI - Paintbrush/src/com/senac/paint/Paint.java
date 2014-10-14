@@ -31,16 +31,21 @@ public class Paint extends JPanel {
 	protected void paintComponent(Graphics g) {
 		calculaColor();
 		
-		System.out.println(r + "," + gr + "," + ",");
+		System.out.println();
+		
+		if (altura > 200) {
+			altura = 0;
+			largura = 0;
+		}
 		
 		g.setColor(new Color(r, gr, b));
 		
 		if (forma == 1) {
-			g.drawOval(x, y, largura++, altura++);
+			g.fillOval(x, y, largura++, altura++);
 		}
 		
 		if (forma == 2) {
-			g.drawRect(x, y, largura++, altura++);
+			g.fillRect(x, y, largura++, altura++);
 		}
 	}
 	
@@ -73,16 +78,10 @@ public class Paint extends JPanel {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
 			switch (e.getButton()) {
 			case 1 : 
-				x = e.getX();
-				y = e.getY();
+				x = e.getX() - largura;
+				y = e.getY() - altura;
 				
 				forma = 1;
 				
@@ -93,8 +92,36 @@ public class Paint extends JPanel {
 				largura = 0;
 				break;
 			case 3 :
-				x = e.getX();
-				y = e.getY();
+				x = e.getX() - largura;
+				y = e.getY() - altura;
+				
+				forma = 2;
+				
+				repaint();
+				break;
+				
+			default : 
+			}
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			switch (e.getButton()) {
+			case 1 : 
+				x = e.getX() - largura;
+				y = e.getY() - altura;
+				
+				forma = 1;
+				
+				repaint();
+				break;
+			case 2 :
+				altura = 0;
+				largura = 0;
+				break;
+			case 3 :
+				x = e.getX() - largura;
+				y = e.getY() - altura;
 				
 				forma = 2;
 				
@@ -139,8 +166,8 @@ public class Paint extends JPanel {
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			x = e.getX();
-			y = e.getY();
+			x = e.getX() - largura;
+			y = e.getY() - altura;
 			
 			repaint();
 		}
