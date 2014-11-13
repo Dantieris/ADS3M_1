@@ -84,14 +84,20 @@ public class NoAVL {
 		int fatorBalanceamento = this.calcularFatorBalanceamento();
 
 		if (Math.abs(fatorBalanceamento) == 2) {
-			corrigirNodo(filho);
+			this.corrigirNodo();
 		}
 		
-		this.getPai().corrigirNodo(this);
+		this.getPai().corrigirNodo();
 	}
 
-	private void corrigirNodo(NoAVL n) {
-
+	private void corrigirNodo() {
+		int fatorBalanceamento = this.calcularFatorBalanceamento();
+		
+		if (Math.abs(fatorBalanceamento) == -2) {
+			if (this.getDireito().calcularFatorBalanceamento() == 1) {
+				
+			}
+		}
 	}
 
 }
