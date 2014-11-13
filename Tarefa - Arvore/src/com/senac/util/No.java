@@ -2,8 +2,9 @@ package com.senac.util;
 
 public class No {
 	private int valor;
-	private No esquerda;
-	private No direita;
+	private No esquerdo;
+	private No direito;
+	private No pai;
 
 	public No() {
 	}
@@ -20,35 +21,43 @@ public class No {
 		this.valor = valor;
 	}
 
-	public No getEsquerda() {
-		return esquerda;
+	public No getEsquerdo() {
+		return esquerdo;
 	}
 
-	public void setEsquerda(No esquerda) {
-		this.esquerda = esquerda;
+	public void setEsquerdo(No esquerda) {
+		this.esquerdo = esquerda;
 	}
 
-	public No getDireita() {
-		return direita;
+	public No getDireito() {
+		return direito;
 	}
 
-	public void setDireita(No direita) {
-		this.direita = direita;
+	public void setDireito(No direita) {
+		this.direito = direita;
+	}
+	
+	public No getPai() {
+		return this.pai;
+	}
+	
+	public void setPai(No pai) {
+		this.pai = pai;
 	}
 
 	public void inserir(No filho) {
 		if (filho.getValor() < this.valor) {
-			if (this.esquerda == null) {
-				this.esquerda = filho;
+			if (this.esquerdo == null) {
+				this.esquerdo = filho;
 			} else {
-				this.esquerda.inserir(filho);
+				this.esquerdo.inserir(filho);
 			}
 
 		} else if (filho.getValor() > this.valor) {
-			if (this.direita == null) {
-				this.direita = filho;
+			if (this.direito == null) {
+				this.direito = filho;
 			} else {
-				this.direita.inserir(filho);
+				this.direito.inserir(filho);
 			}
 		}
 	}
@@ -56,47 +65,47 @@ public class No {
 	public void printNo() {
 		System.out.print("(" + this.getValor());
 
-		if (esquerda != null) {
-			esquerda.printNo();
+		if (esquerdo != null) {
+			esquerdo.printNo();
 		}
 
-		if (direita != null) {
-			direita.printNo();
+		if (direito != null) {
+			direito.printNo();
 		}
 
 		System.out.print(")");
 	}
 
 	public void emOrdem() {
-		if (this.getDireita() != null) {
-			this.getDireita().preOrdem();
+		if (this.getDireito() != null) {
+			this.getDireito().preOrdem();
 		}
 
 		System.out.print(this.getValor() + ",");
 
-		if (this.getEsquerda() != null) {
-			this.getEsquerda().preOrdem();
+		if (this.getEsquerdo() != null) {
+			this.getEsquerdo().preOrdem();
 		}
 	}
 
 	public void preOrdem() {
 		System.out.print(this.getValor() + ",");
 
-		if (this.getEsquerda() != null) {
-			this.getEsquerda().preOrdem();
+		if (this.getEsquerdo() != null) {
+			this.getEsquerdo().preOrdem();
 		}
 
-		if (this.getDireita() != null) {
-			this.getDireita().preOrdem();
+		if (this.getDireito() != null) {
+			this.getDireito().preOrdem();
 		}
 	}
 
 	public void posOrdem() {
-		if (this.getEsquerda() != null) {
-			this.getEsquerda().posOrdem();
+		if (this.getEsquerdo() != null) {
+			this.getEsquerdo().posOrdem();
 		}
-		if (this.getDireita() != null) {
-			this.getDireita().posOrdem();
+		if (this.getDireito() != null) {
+			this.getDireito().posOrdem();
 		}
 		System.out.println(this.getValor());
 	}
