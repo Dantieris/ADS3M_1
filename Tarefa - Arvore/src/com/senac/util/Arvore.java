@@ -109,7 +109,7 @@ public class Arvore {
 	}
 	
 	public void buscaLargura(No n) {
-		System.out.println("Busca em largura:");
+		System.out.println("Busca em largura a partir do nó: " + n.getValor());
 
 		ArrayDeque<No> fila = new ArrayDeque<No>();
 		fila.add(n);
