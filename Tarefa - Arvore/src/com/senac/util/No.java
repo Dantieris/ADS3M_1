@@ -1,12 +1,12 @@
 package com.senac.util;
 
-
 public class No {
 	private int valor;
 	private No esquerda;
 	private No direita;
-	
-	public No() {}
+
+	public No() {
+	}
 
 	public No(int valor) {
 		this.valor = valor;
@@ -19,7 +19,7 @@ public class No {
 	public void setValor(int valor) {
 		this.valor = valor;
 	}
-	
+
 	public No getEsquerda() {
 		return esquerda;
 	}
@@ -43,65 +43,71 @@ public class No {
 			} else {
 				this.esquerda.inserir(filho);
 			}
-			
+
 		} else if (filho.getValor() > this.valor) {
-				if (this.direita == null) {
-					this.direita = filho;
-				} else {
-					this.direita.inserir(filho);
-				}
+			if (this.direita == null) {
+				this.direita = filho;
+			} else {
+				this.direita.inserir(filho);
 			}
+		}
 	}
-	
+
 	public void printNo() {
-		System.out.print("("+this.getValor());
-		
+		System.out.print("(" + this.getValor());
+
 		if (esquerda != null) {
 			esquerda.printNo();
 		}
-		
+
 		if (direita != null) {
 			direita.printNo();
 		}
-		
+
 		System.out.print(")");
 	}
-	
+
 	public void emOrdem() {
 		if (this.getDireita() != null) {
 			this.getDireita().preOrdem();
 		}
-		
-		System.out.print(this.getValor()+",");
-		
+
+		System.out.print(this.getValor() + ",");
+
 		if (this.getEsquerda() != null) {
 			this.getEsquerda().preOrdem();
 		}
 	}
-	
+
 	public void preOrdem() {
-		System.out.print(this.getValor()+",");
-		
+		System.out.print(this.getValor() + ",");
+
 		if (this.getEsquerda() != null) {
 			this.getEsquerda().preOrdem();
 		}
-		
+
 		if (this.getDireita() != null) {
 			this.getDireita().preOrdem();
 		}
 	}
-	
+
 	public void posOrdem() {
-		
+		if (this.getEsquerda() != null) {
+			this.getEsquerda().posOrdem();
+		}
+		if (this.getDireita() != null) {
+			this.getDireita().posOrdem();
+		}
+		System.out.println(this.getValor());
 	}
-	
+
 	public void busca(int valor) {
-		
+
 	}
-	
+
 	// NÃO IMPLEMENTADO
 	public void remover(int valor) {
-		
+
 	}
-		
+
 }
