@@ -23,7 +23,7 @@ public class ArvoreAVL {
 	}
 	
 	public void inserir(NoAVL no) {
-		if (getRaiz() == null) {
+		if (this.raiz == null) {
 			setRaiz(no);
 		} else {
 			getRaiz().inserir(no);

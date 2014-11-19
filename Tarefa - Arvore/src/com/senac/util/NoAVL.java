@@ -4,6 +4,7 @@ public class NoAVL {
 
 	private int valor;
 	private NoAVL direito;
+	static int test = 1;
 	private NoAVL esquerdo;
 	private NoAVL pai;
 
@@ -12,6 +13,11 @@ public class NoAVL {
 	}
 
 	public NoAVL(int valor) {
+		this.valor = valor;
+	}
+
+	public NoAVL(NoAVL pai, int valor) {
+		this.pai = pai;
 		this.valor = valor;
 	}
 
@@ -50,8 +56,12 @@ public class NoAVL {
 	public int calcularAltura() {
 		int altura = 0;
 
-		altura = 1 + Math.max(getDireito().calcularAltura(), getEsquerdo()
-				.calcularAltura());
+		if (getDireito() != null && getEsquerdo() != null) {
+			altura = 1 + Math.max(getDireito().calcularAltura(), getEsquerdo()
+					.calcularAltura());
+		}
+		
+		System.out.println(altura);
 
 		return altura;
 	}
@@ -59,35 +69,51 @@ public class NoAVL {
 	public int calcularFatorBalanceamento() {
 		int fatorBalanceamento = 0;
 
-		fatorBalanceamento = this.getEsquerdo().calcularAltura()
-				- this.getDireito().calcularAltura();
+		int esquerdoAltura = 0;
+		int direitoAltura = 0;
+
+		if (this.getDireito() != null) {
+			direitoAltura = this.getDireito().calcularAltura();
+		}
+
+		if (this.getEsquerdo() != null) {
+			esquerdoAltura = this.getEsquerdo().calcularAltura();
+		}
+		fatorBalanceamento = esquerdoAltura - direitoAltura;
 
 		return fatorBalanceamento;
 	}
 
 	public void inserir(NoAVL filho) {
+		filho.getValor();
+		
 		if (filho.getValor() < this.valor) {
 			if (this.esquerdo == null) {
+				filho.setPai(this);
 				this.esquerdo = filho;
 			} else {
+				filho.setPai(this);
 				this.esquerdo.inserir(filho);
 			}
 
 		} else if (filho.getValor() > this.valor) {
 			if (this.direito == null) {
+				filho.setPai(this);
 				this.direito = filho;
 			} else {
+				filho.setPai(this);
 				this.direito.inserir(filho);
 			}
 		}
 
-		int fatorBalanceamento = this.calcularFatorBalanceamento();
+		int fatorBalanceamento = calcularFatorBalanceamento();
 
 		if (Math.abs(fatorBalanceamento) == 2) {
 			this.corrigirNodo();
 		}
 
-		this.getPai().corrigirNodo();
+		if (this.getPai() != null)
+			this.getPai().corrigirNodo();
 	}
 
 	private NoAVL corrigirNodo() {
@@ -99,7 +125,7 @@ public class NoAVL {
 			if (getDireito().calcularFatorBalanceamento() == 1) {
 				setDireito(this.rotDireita(getDireito()));
 			}
-			
+
 			retorno = this.rotEsquerda(this);
 		}
 
@@ -110,9 +136,11 @@ public class NoAVL {
 
 			retorno = this.rotDireita(this);
 		}
-		
-		retorno.posOrdem();
-		
+
+		if (retorno != null) {
+			retorno.posOrdem();
+		}
+
 		return retorno;
 	}
 
@@ -162,9 +190,9 @@ public class NoAVL {
 			this.getDireito().posOrdem();
 		}
 
-		int fatorBalanceamento =  this.calcularFatorBalanceamento();
+		int fatorBalanceamento = this.calcularFatorBalanceamento();
 		int altura = this.calcularAltura();
-		
+
 		if (Math.abs(fatorBalanceamento) == 2) {
 			this.corrigirNodo();
 		}
